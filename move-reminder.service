@@ -1,0 +1,16 @@
+[Unit]
+Description=Get-up-and-move reminder
+After=graphical-session.target
+PartOf=graphical-session.target
+
+[Service]
+ExecStart=/usr/bin/python3 %h/.local/bin/move-reminder.py
+Environment=MOVE_WORK_MINUTES=50
+Environment=MOVE_BREAK_MINUTES=3
+Environment=MOVE_NAG_MINUTES=4
+Environment=MOVE_ICON=appointment-soon
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=graphical-session.target
